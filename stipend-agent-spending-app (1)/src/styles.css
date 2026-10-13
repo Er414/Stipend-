@@ -1,0 +1,95 @@
+.stipend-landing {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  background: #07080b;
+  color: #f3efe6;
+}
+
+.stipend-landing__scene,
+.stipend-landing__scene canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.stipend-landing__scene { z-index: -1; }
+
+.stipend-landing__content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 6.1% max(4vh, env(safe-area-inset-bottom));
+  pointer-events: none;
+}
+
+.stipend-landing__copy { width: 100%; }
+
+.stipend-landing__label {
+  margin: 0 0 clamp(16px, 2.4vh, 30px);
+  color: #9a9a92;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(12px, 1.55vw, 17px);
+  font-weight: 400;
+  letter-spacing: 0.31em;
+  line-height: 1;
+}
+
+.stipend-landing__headline {
+  margin: 0;
+  color: #f3efe6;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(37px, 10.5vw, 76px);
+  font-weight: 900;
+  letter-spacing: -0.078em;
+  line-height: 0.87;
+}
+
+.stipend-landing__headline span { display: block; white-space: nowrap; }
+
+.stipend-landing__button {
+  appearance: none;
+  display: block;
+  flex: none;
+  width: 100%;
+  min-height: clamp(64px, 8vh, 92px);
+  margin-top: clamp(26px, 4vh, 48px);
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 0;
+  background: #f3efe6;
+  color: #07080b;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(19px, 2.5vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  text-align: center;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.stipend-landing__button:focus-visible { outline: 3px solid #e7ff3d; outline-offset: 4px; }
+.stipend-landing__button:active { background: #e7e3cf; }
+
+@media (min-width: 768px) {
+  .stipend-landing__headline { font-size: clamp(48px, 5vw, 78px); }
+  .stipend-landing__copy,
+  .stipend-landing__button { max-width: min(60vw, 720px); }
+}
+
+@media (max-height: 650px) {
+  .stipend-landing__content { padding-bottom: 18px; }
+  .stipend-landing__label { margin-bottom: 12px; }
+  .stipend-landing__headline { font-size: min(9.5vw, 9.5vh); }
+  .stipend-landing__button { min-height: 54px; margin-top: 18px; }
+}

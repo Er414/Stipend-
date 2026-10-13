@@ -1,0 +1,6 @@
+# Local Stipend V2 — NOT DEPLOYED
+The repository contains no V1 Solidity source, deployment artifacts, or configured testnet contract addresses. A prior prompt's V1 pays with `transferFrom(agent, …)`, so agent-held funds can bypass its caps and its `owner = msg.sender` likely belongs to the deployer, not the Mera passkey. Neither can be fixed in place.
+V2 takes an explicit nonzero passkey owner, escrows tokens in the contract, restricts payees and agent, locks each quote to chain/contract/token/recipient/amount/nonce, enforces caps and rate limits, and allows owner recovery after revocation. Failed EVM transactions cannot emit persistent Refused events; log reverts off-chain.
+`MockAUSD.sol` is a **local-only test double**, not the real AUSD asset. It deliberately allows forced transfer failures for rollback testing. Do not deploy it or V2 during this audit.
+No OpenZeppelin dependency is present; V2 uses an inline reentrancy guard and safe ERC20 low-level return-value checks rather than silently adding a library.
+Test properties: see `test/StipendV2.test.cjs` for owner-only controls, allowed payment, unauthorized/payee/cap/daily/hourly/replay/revocation failures, transfer rollback, recovery, and bypass resistance. Run via `node --test stipend-contracts/test/StipendV2.test.cjs` from the project root.
